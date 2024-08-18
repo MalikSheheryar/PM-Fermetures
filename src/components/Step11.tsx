@@ -1,20 +1,20 @@
-'use client'
-import { Image11a, Image11b, Image11c } from '@/Images/images'
-import Image from 'next/image'
-import { useState } from 'react'
+'use client';
+import { Image11a, Image11b, Image11c } from '@/Images/images';
+import Image from 'next/image';
+import { useState } from 'react';
 
 const options = [
   { name: 'Less than a Month', src: Image11a },
   { name: 'Less than Three Months', src: Image11b },
   { name: 'Undetermined', src: Image11c },
-]
+];
 
 const Step11 = () => {
-  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const handleSelect = (index: number) => {
-    setSelectedOption(index)
-  }
+    setSelectedOption(index);
+  };
 
   return (
     <div>
@@ -34,7 +34,7 @@ const Step11 = () => {
       </p>
 
       {/* Image Cards */}
-      <div className="flex justify-between">
+      <div className="flex justify-around">
         {options.map((option, index) => (
           <div
             key={index}
@@ -64,7 +64,7 @@ const Step11 = () => {
         Choose the option that best suits your needs.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default Step11
+export default Step11;

@@ -1,6 +1,6 @@
-'use client'
-import Image from 'next/image'
-import { useState } from 'react'
+'use client';
+import Image from 'next/image';
+import { useState } from 'react';
 import {
   Image5a,
   Image5b,
@@ -8,10 +8,10 @@ import {
   Image5d,
   Image5e,
   Image5f,
-} from '../Images/images' // Ensure this path is correct
+} from '../Images/images'; // Ensure this path is correct
 
 const Step6 = () => {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const imageTitles = [
     'Grooved Wood Grain',
@@ -20,11 +20,11 @@ const Step6 = () => {
     'Single Line',
     'Woodgrain Mono-line',
     'Wood Grain Microline',
-  ]
+  ];
 
   const handleImageClick = (index: number) => {
-    setSelectedImage(index)
-  }
+    setSelectedImage(index);
+  };
 
   return (
     <div>
@@ -59,7 +59,7 @@ const Step6 = () => {
               <Image
                 src={imgSrc}
                 alt={`Design Pattern ${index + 1}`}
-                className="object-cover"
+                className="object-cover m-auto"
                 width={250}
                 height={150}
               />
@@ -72,7 +72,7 @@ const Step6 = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Step6
+export default Step6;

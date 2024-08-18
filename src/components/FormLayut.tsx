@@ -1,16 +1,16 @@
-'use client'
-import { useState } from 'react'
-import Step1 from './Step1'
-import Step2 from './Step2'
-import Step3 from './Step3'
-import Step4 from './Step4'
-import Step5 from './Step5'
-import Step6 from './Step6'
-import Step7 from './Step7'
-import Step8 from './Step8'
-import Step9 from './Step9'
-import Step10 from './Step10'
-import Step11 from './Step11'
+'use client';
+import { useState } from 'react';
+import Step1 from './Step1';
+import Step2 from './Step2';
+import Step3 from './Step3';
+import Step4 from './Step4';
+import Step5 from './Step5';
+import Step6 from './Step6';
+import Step7 from './Step7';
+import Step8 from './Step8';
+import Step9 from './Step9';
+import Step10 from './Step10';
+import Step11 from './Step11';
 
 const steps = [
   'Bay Width',
@@ -24,47 +24,47 @@ const steps = [
   'Pedestrian Door',
   'Window',
   'Delivery Time',
-]
+];
 
 const MultiStepForm = () => {
-  const [currentStep, setCurrentStep] = useState(0)
+  const [currentStep, setCurrentStep] = useState(0);
 
   const handleNext = () => {
-    setCurrentStep((prevStep) => Math.min(prevStep + 1, steps.length - 1))
-  }
+    setCurrentStep((prevStep) => Math.min(prevStep + 1, steps.length - 1));
+  };
 
   const handlePrevious = () => {
-    setCurrentStep((prevStep) => Math.max(prevStep - 1, 0))
-  }
+    setCurrentStep((prevStep) => Math.max(prevStep - 1, 0));
+  };
 
   const renderStepComponent = () => {
     switch (currentStep) {
       case 0:
-        return <Step1 />
+        return <Step1 />;
       case 1:
-        return <Step2 />
+        return <Step2 />;
       case 2:
-        return <Step3 />
+        return <Step3 />;
       case 3:
-        return <Step4 />
+        return <Step4 />;
       case 4:
-        return <Step5 />
+        return <Step5 />;
       case 5:
-        return <Step6 />
+        return <Step6 />;
       case 6:
-        return <Step7 />
+        return <Step7 />;
       case 7:
-        return <Step8 />
+        return <Step8 />;
       case 8:
-        return <Step9 />
+        return <Step9 />;
       case 9:
-        return <Step10 />
+        return <Step10 />;
       case 10:
-        return <Step11 />
+        return <Step11 />;
       default:
-        return <Step1 />
+        return <Step1 />;
     }
-  }
+  };
 
   return (
     <div className="flex flex-col md:flex-row">
@@ -112,7 +112,7 @@ const MultiStepForm = () => {
       <div className="relative border-r border-gray-300 mx-4"></div>
 
       {/* Step Content - Visible on All Screens */}
-      <div className="w-full md:w-3/4 p-4 flex flex-col justify-between">
+      <div className="w-full md:w-3/4 p-4 flex flex-col">
         {/* Back Button - Visible on Small Screens */}
         {currentStep > 0 && (
           <button
@@ -145,7 +145,7 @@ const MultiStepForm = () => {
         </div>
 
         {/* Step Component */}
-        <div className="flex-grow">{renderStepComponent()}</div>
+        <div>{renderStepComponent()}</div>
 
         {/* Navigation Buttons - Visible on Large Screens */}
         <div className="flex justify-end items-center mt-4">
@@ -167,7 +167,7 @@ const MultiStepForm = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MultiStepForm
+export default MultiStepForm;
