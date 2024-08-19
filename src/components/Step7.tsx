@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useFormContext, FieldError } from 'react-hook-form'
 import {
   Image6a,
   Image6b,
@@ -32,21 +32,38 @@ const colors = [
 ]
 
 const Step7 = () => {
-  const [selectedColor, setSelectedColor] = useState<number | null>(null)
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+
+  const selectedColor = watch('colorName')
 
   const handleSelect = (index: number) => {
-    setSelectedColor(index)
+    setValue('colorName', colors[index].name, { shouldValidate: true })
+    setValue('color', index)
+  }
+
+  const getErrorMessage = (error: FieldError | undefined): string | null => {
+    if (error && typeof error === 'object' && 'message' in error) {
+      return error.message || null
+    }
+    return null
   }
 
   return (
     <div>
       {/* Step Indicator */}
-      <p className="text-sm text-gray-700 font-bold mb-2">
+      <p className="text-xs md:text-sm text-gray-700 font-bold mb-2">
         Step <span>7 / 13</span>
       </p>
 
       {/* Heading */}
-      <h2 className="text-3xl font-extrabold text-gray-700 mb-4">Color</h2>
+      <h2 className="text-2xl md:text-3xl font-extrabold text-gray-700 mb-4">
+        Color
+      </h2>
 
       {/* Paragraph Description */}
       <p className="text-sm text-gray-500 mb-4">
@@ -54,40 +71,57 @@ const Step7 = () => {
       </p>
 
       {/* Color Cards */}
-      <div className="grid grid-cols-4 gap-6 mt-8 mb-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-4 sm:mt-8 mb-2">
         {colors.map((color, index) => (
           <div
             key={index}
             onClick={() => handleSelect(index)}
-            className={`cursor-pointer rounded-lg overflow-hidden mb-4 ${
-              selectedColor === index
-                ? `shadow-[0_6px_12px_4px_rgba(100,149,237,0.5)] scale-105 border-b-4`
+            className={`cursor-pointer rounded-lg overflow-hidden transition-transform duration-200 ease-in-out mb-2 sm:mb-4 bg-white !sm:h-64 ${
+              selectedColor === color.name
+                ? `shadow-[0_6px_12px_4px_rgba(120,120,120,0.5)] scale-105 border-b-4`
                 : 'shadow-lg'
             }`}
             style={{
               borderBottomColor:
-                selectedColor === index ? color.colorCode : 'transparent',
+                selectedColor === color.name ? color.colorCode : 'transparent',
             }}
           >
-            <div className="w-full h-auto">
+            <div
+              className={`w-full h-36 sm:h-44 md:h-40 lg:h-48 xl:h-56 relative`}
+            >
               <Image
                 src={color.src}
                 alt={color.name}
-                layout="responsive"
-                width={180}
-                height={135}
-                className="object-cover"
+                layout="fill"
+                className="rounded-t-lg"
               />
             </div>
-            <p className="text-center text-gray-700 font-medium my-2">
-              {color.name}
-            </p>
+            <div className="p-2 text-center">
+              <p className="text-xs sm:text-sm md:text-base text-gray-700 font-medium">
+                {color.name}
+              </p>
+            </div>
           </div>
         ))}
       </div>
 
+      {/* Hidden input field for validation */}
+      <input
+        type="hidden"
+        {...register('colorName', {
+          required: 'Please select a color.',
+        })}
+      />
+
+      {/* Display validation error if exists */}
+      {errors.colorName && (
+        <span style={{ color: 'red' }} className="text-xs sm:text-sm">
+          {getErrorMessage(errors.colorName as FieldError)}
+        </span>
+      )}
+
       {/* Note */}
-      <p className="text-sm text-gray-500 mt-4">
+      <p className="text-xs sm:text-sm text-gray-500 mt-4">
         Non-standard color with Mono-line Woodgrain pattern (charges apply)
       </p>
     </div>
