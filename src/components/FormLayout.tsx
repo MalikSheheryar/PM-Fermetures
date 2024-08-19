@@ -122,15 +122,14 @@ const MultiStepForm = () => {
       <div className="relative border-r border-gray-300 mx-4"></div>
 
       {/* Step Content - Visible on All Screens */}
-      <div className="w-full md:w-3/4  flex flex-col">
-        {/* Step Indicator with Text - Only on Small Screens */}
+      <div className="w-full md:w-3/4 flex flex-col">
+        {/* Step Text Only - Visible on Small Screens */}
         <div className="flex flex-col justify-center items-center md:hidden mb-4">
-          <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 transition-all duration-300 border-color1 bg-color1 text-white shadow-lg glow-effect">
-            {currentStep + 1}
-          </div>
-          <div className="mt-2 text-md font-semibold text-gray-800 text-center">
-            {steps[currentStep]}
-          </div>
+          {currentStep > 0 && ( // Conditionally render based on currentStep
+            <div className="mt-2 text-md font-semibold text-gray-800 text-center">
+              {steps[currentStep]}
+            </div>
+          )}
         </div>
 
         {/* Step Component */}
@@ -155,22 +154,6 @@ const MultiStepForm = () => {
           </button>
         </div>
       </div>
-
-      {/* CSS for Glowing Effect */}
-      <style jsx>{`
-        .glow-effect {
-          box-shadow: 0 0 15px rgba(0, 35, 149, 0.7);
-        }
-
-        @media (min-width: 768px) and (max-width: 1024px) {
-          .md\\:ml-20 {
-            margin-left: 12px; /* Further adjustment to the left */
-          }
-          .md\\:transform {
-            transform: translateX(-1.5rem); /* Further shift to the left */
-          }
-        }
-      `}</style>
     </div>
   )
 }

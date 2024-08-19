@@ -17,15 +17,12 @@ const Step9 = () => {
     formState: { errors },
   } = useFormContext()
 
-  // Watch the selected option name
   const selectedOption = watch('gateOption')
 
   const handleSelect = (index: number) => {
-    // Set the value to the option name instead of the index
-    setValue('gateOption', options[index].name, { shouldValidate: true }) // Set the option name and trigger validation
+    setValue('gateOption', options[index].name, { shouldValidate: true })
   }
 
-  // Function to extract error message safely
   const getErrorMessage = (error: FieldError | undefined): string | null => {
     if (error && typeof error === 'object' && 'message' in error) {
       return error.message || null
@@ -58,22 +55,21 @@ const Step9 = () => {
             onClick={() => handleSelect(index)}
             className={`cursor-pointer rounded-lg overflow-hidden mb-4 transition-transform duration-200 ease-in-out ${
               selectedOption === option.name
-                ? 'shadow-[0_6px_12px_4px_rgba(120,120,120,0.5)] scale-105 border-b-4 border-color1'
+                ? 'shadow-[0_6px_12px_4px_rgba(100,149,237,0.5)] scale-105 border-b-4 border-color1'
                 : 'shadow-lg'
-            } w-full sm:w-3/4 lg:w-1/2`} // Responsive width
+            } w-full sm:w-3/4 lg:w-1/2 xl:w-1/3`}
           >
-            <div className="w-full h-auto w-full lg:max-h-[320px]">
+            <div className="w-full h-auto max-w-[320px] max-h-[320px] mx-auto">
               <Image
                 src={option.src}
                 alt={option.name}
                 layout="responsive"
                 width={320}
                 height={320}
-                objectFit="cover"
                 className="object-cover"
               />
             </div>
-            <p className="text-center text-xs sm:text-sm md:text-base text-gray-700 font-semibold my-2">
+            <p className="text-center text-xs sm:text-sm md:text-base text-gray-700 font-semibold my-2 bg-white p-2 rounded-lg">
               {option.name}
             </p>
           </div>

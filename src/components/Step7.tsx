@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 import { useFormContext, FieldError } from 'react-hook-form'
 import {
@@ -40,10 +41,23 @@ const Step7 = () => {
   } = useFormContext()
 
   const selectedColor = watch('colorName')
+  const [customColor, setCustomColor] = useState('')
 
   const handleSelect = (index: number) => {
-    setValue('colorName', colors[index].name, { shouldValidate: true })
+    const color = colors[index]
+    setValue('colorName', color.name, { shouldValidate: true })
     setValue('color', index)
+    if (color.name === 'Other RAL') {
+      // Show the custom color input field when "Other RAL" is selected
+      setCustomColor('')
+    }
+  }
+
+  const handleCustomColorChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCustomColor(event.target.value)
+    setValue('customColor', event.target.value)
   }
 
   const getErrorMessage = (error: FieldError | undefined): string | null => {
@@ -105,6 +119,26 @@ const Step7 = () => {
         ))}
       </div>
 
+      {/* Custom Color Input */}
+      {selectedColor === 'Other RAL' && (
+        <div className="mt-4">
+          <label
+            htmlFor="customColor"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Enter Custom Color
+          </label>
+          <input
+            placeholder="Enter color"
+            type="text"
+            id="customColor"
+            value={customColor}
+            onChange={handleCustomColorChange}
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+          />
+        </div>
+      )}
+
       {/* Hidden input field for validation */}
       <input
         type="hidden"
@@ -112,6 +146,7 @@ const Step7 = () => {
           required: 'Please select a color.',
         })}
       />
+      <input type="hidden" {...register('customColor')} />
 
       {/* Display validation error if exists */}
       {errors.colorName && (
