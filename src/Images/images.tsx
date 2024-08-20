@@ -33,6 +33,7 @@ import Image11b from '../../public/assets/image11-b.png'
 import Image11c from '../../public/assets/image11-c.gif'
 import Image12a from '../../public/assets/Image12-a.png'
 import Image12b from '../../public/assets/Image12-b.png'
+import Image14a from '../../public/assets/Image14-a.png'
 
 import Logo from '../../public/assets/logo-pmfermetures.png'
 export {
@@ -72,4 +73,5 @@ export {
   Image11c,
   Image12a,
   Image12b,
+  Image14a,
 }

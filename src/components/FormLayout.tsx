@@ -13,7 +13,7 @@ import Step9 from './Step9'
 import Step10 from './Step10'
 import Step11 from './Step11'
 import Step12 from './Step12'
-// import Step13 from './Step13'
+import Step13 from './Step13'
 
 const steps = [
   'Bay Width',
@@ -28,15 +28,23 @@ const steps = [
   'Window',
   'Delivery Time',
   'Customer Type',
-  // 'Personal Information',
+  'Personal Information',
 ]
 
-const MultiStepForm = () => {
+interface MultiStepFormProps {
+  setIsSubmitted: (submitted: boolean) => void
+}
+
+const MultiStepForm: React.FC<MultiStepFormProps> = ({ setIsSubmitted }) => {
   const [currentStep, setCurrentStep] = useState(0)
   const { trigger, getValues } = useFormContext()
 
   const onSubmit = async () => {
-    const data = getValues()
+    const valid = await trigger() // Validate current step
+    if (valid) {
+      setIsSubmitted(true) // Mark as submitted in the parent component
+      console.log('Final Form Data:', getValues()) // Log final data
+    }
   }
 
   const handleNext = async () => {
@@ -77,9 +85,8 @@ const MultiStepForm = () => {
         return <Step11 />
       case 11:
         return <Step12 />
-
-      // case 12:
-      //   return <Step13 />
+      case 12:
+        return <Step13 />
       default:
         return <Step1 />
     }
@@ -107,7 +114,7 @@ const MultiStepForm = () => {
               <div
                 className={`w-10 h-10 flex items-center justify-center rounded-full border-2 transition-all duration-300 ${
                   index === currentStep
-                    ? 'border-color1 bg-color1 text-white shadow-lg glow-effect'
+                    ? 'border-color1 bg-color1 text-white shadow-glow-blue'
                     : index < currentStep
                     ? 'border-color1 bg-color1 text-white'
                     : 'border-gray-300 bg-white text-gray-500'
@@ -132,11 +139,9 @@ const MultiStepForm = () => {
 
       {/* Step Content - Visible on All Screens */}
       <div className="w-full md:w-3/4 flex flex-col">
-        {/* Removed Step Text Only for Small Screens */}
-        {/* Step Component */}
         <div>{renderStepComponent()}</div>
 
-        {/* Navigation Buttons - Visible on All Screens */}
+        {/* Navigation Buttons */}
         <div className="flex justify-end items-center mt-4">
           {currentStep > 0 && (
             <button
@@ -146,13 +151,22 @@ const MultiStepForm = () => {
               Back
             </button>
           )}
-          <button
-            onClick={handleNext}
-            disabled={currentStep === steps.length - 1}
-            className="flex items-center bg-color1 text-white px-8 text-sm py-4 rounded-full font-semibold"
-          >
-            Continue
-          </button>
+          {currentStep === steps.length - 1 ? (
+            <button
+              onClick={onSubmit}
+              className="flex items-center bg-color1 text-white px-8 text-sm py-4 rounded-full font-semibold"
+            >
+              Submit
+            </button>
+          ) : (
+            <button
+              onClick={handleNext}
+              disabled={currentStep === steps.length - 1}
+              className="flex items-center bg-color1 text-white px-8 text-sm py-4 rounded-full font-semibold"
+            >
+              Continue
+            </button>
+          )}
         </div>
       </div>
     </div>

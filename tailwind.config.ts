@@ -20,7 +20,7 @@ const config: Config = {
         red: '#ED2939',
       },
       boxShadow: {
-        'glow-effect': '0 0 10px 2px rgba(102, 152, 255, 0.75)',
+        'glow-blue': '0 0 6px rgba(0, 35, 149, 0.4)',
       },
     },
   },

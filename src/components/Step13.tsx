@@ -1,187 +1,162 @@
-// 'use client'
+'use client'
 
-// import { Image12a, Image12b } from '@/Images/images'
-// import Image from 'next/image'
-// import { useFormContext, FieldError } from 'react-hook-form'
+import { useFormContext, FieldError } from 'react-hook-form'
 
-// const options = [
-//   { name: 'Individual', src: Image12a },
-//   { name: 'Company', src: Image12b },
-// ]
+const Step13 = () => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
 
-// const Step12 = () => {
-//   const {
-//     register,
-//     setValue,
-//     watch,
-//     formState: { errors },
-//   } = useFormContext()
+  const getErrorMessage = (error: FieldError | undefined): string | null => {
+    if (error && typeof error === 'object' && 'message' in error) {
+      return error.message || null
+    }
+    return null
+  }
 
-//   const selectedOption = watch('clientType')
-//   const handleSelect = (index: number) => {
-//     setValue('clientType', options[index].name, { shouldValidate: true })
-//   }
+  return (
+    <div className="p-4 lg:p-8">
+      {/* Step Indicator */}
+      <p className="text-xs sm:text-sm text-gray-700 font-bold mb-2">
+        Step <span>13 / 13</span>
+      </p>
 
-//   const getErrorMessage = (error: FieldError | undefined): string | null => {
-//     if (error && typeof error === 'object' && 'message' in error) {
-//       return error.message || null
-//     }
-//     return null
-//   }
+      {/* Heading */}
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-700 mb-4">
+        Personal Information
+      </h2>
 
-//   return (
-//     <div className="p-4 lg:p-8">
-//       {/* Step Indicator */}
-//       <p className="text-xs sm:text-sm text-gray-700 font-bold mb-2">
-//         Step <span>12 / 13</span>
-//       </p>
+      {/* Email Address */}
+      <div className="mb-5">
+        <label className="block text-sm font-medium text-gray-700">
+          Email Address
+        </label>
+        <input
+          type="email"
+          {...register('email', {
+            required: 'Email address is required.',
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: 'Please enter a valid email address.',
+            },
+          })}
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm focus:border-2"
+          placeholder="Enter your email address"
+        />
+        {errors.email && (
+          <span style={{ color: 'red' }} className="text-sm">
+            {getErrorMessage(errors.email as FieldError)}
+          </span>
+        )}
+      </div>
 
-//       {/* Heading */}
-//       <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-700 mb-4">
-//         Customer Type
-//       </h2>
+      {/* Phone Number and Address */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-5">
+        <div className="w-full sm:w-1/2">
+          <label className="block text-sm font-medium text-gray-700">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            {...register('phone', {
+              required: 'Phone number is required.',
+              pattern: {
+                value: /^\d{10,15}$/,
+                message: 'Please enter a valid phone number.',
+              },
+            })}
+            className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            placeholder="Enter your phone number"
+          />
+          {errors.phone && (
+            <span style={{ color: 'red' }} className="text-sm">
+              {getErrorMessage(errors.phone as FieldError)}
+            </span>
+          )}
+        </div>
+        <div className="w-full sm:w-1/2">
+          <label className="block text-sm font-medium text-gray-700">
+            Address
+          </label>
+          <input
+            type="text"
+            {...register('address', {
+              required: 'Address is required.',
+            })}
+            className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            placeholder="Enter your address"
+          />
+          {errors.address && (
+            <span style={{ color: 'red' }} className="text-sm">
+              {getErrorMessage(errors.address as FieldError)}
+            </span>
+          )}
+        </div>
+      </div>
 
-//       {/* Paragraph Description */}
-//       <p className="text-xs sm:text-sm md:text-base text-gray-500 mb-4">
-//         Are you an Individual or a Company?
-//       </p>
+      {/* City or Postal Code */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-5">
+        <div className="w-full sm:w-1/2">
+          <label className="block text-sm font-medium text-gray-700">
+            City
+          </label>
+          <input
+            type="text"
+            {...register('city', {
+              required: 'City is required.',
+            })}
+            className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            placeholder="Enter your city"
+          />
+          {errors.city && (
+            <span style={{ color: 'red' }} className="text-sm">
+              {getErrorMessage(errors.city as FieldError)}
+            </span>
+          )}
+        </div>
+        <div className="w-full sm:w-1/2">
+          <label className="block text-sm font-medium text-gray-700">
+            Postal Code
+          </label>
+          <input
+            type="text"
+            {...register('postalCode', {
+              required: 'Postal code is required.',
+              pattern: {
+                value: /^\d{4,10}$/,
+                message: 'Please enter a valid postal code.',
+              },
+            })}
+            className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            placeholder="Enter your postal code"
+          />
+          {errors.postalCode && (
+            <span style={{ color: 'red' }} className="text-sm">
+              {getErrorMessage(errors.postalCode as FieldError)}
+            </span>
+          )}
+        </div>
+      </div>
 
-//       {/* Image Cards */}
-//       <div className="flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-16 lg:gap-20">
-//         {options.map((option, index) => (
-//           <div
-//             key={index}
-//             onClick={() => handleSelect(index)}
-//             className={`cursor-pointer rounded-lg overflow-hidden mb-4 transition-transform duration-200 ease-in-out ${
-//               selectedOption === option.name
-//                 ? 'shadow-[0_6px_12px_4px_rgba(120,120,120,0.5)] scale-105 border-b-4 border-color1'
-//                 : 'shadow-lg'
-//             } w-full sm:w-3/4 lg:w-1/2 xl:w-1/3`}
-//           >
-//             <div className="w-full h-auto max-w-[320px] max-h-[320px] mx-auto">
-//               <Image
-//                 src={option.src}
-//                 alt={option.name}
-//                 layout="responsive"
-//                 width={320}
-//                 height={320}
-//                 className="object-cover"
-//               />
-//             </div>
-//             <p className="text-center text-xs sm:text-sm md:text-base text-gray-700 font-semibold my-2 bg-white p-2 rounded-lg">
-//               {option.name}
-//             </p>
-//           </div>
-//         ))}
-//       </div>
+      {/* Additional Information */}
+      <div className="mb-5">
+        <label className="block text-sm font-medium text-gray-700">
+          Any Additional Information
+        </label>
+        <textarea
+          {...register('additionalInfo')}
+          className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+          placeholder="(Optional)"
+        />
+      </div>
 
-//       {/* Conditional Inputs */}
-//       {selectedOption === 'Individual' && (
-//         <div className="flex flex-col sm:flex-row gap-4 mt-4">
-//           <div className="mb-4 w-full sm:w-1/2">
-//             <label className="block text-sm font-medium text-gray-700">
-//               First Name
-//             </label>
-//             <input
-//               type="text"
-//               {...register('firstName', {
-//                 required: 'First name is required.',
-//               })}
-//               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
-//               placeholder="Enter your first name"
-//             />
-//             {errors.firstName && (
-//               <span style={{ color: 'red' }} className="text-sm">
-//                 {getErrorMessage(errors.firstName as FieldError)}
-//               </span>
-//             )}
-//           </div>
-//           <div className="mb-4 w-full sm:w-1/2">
-//             <label className="block text-sm font-medium text-gray-700">
-//               Last Name
-//             </label>
-//             <input
-//               type="text"
-//               {...register('lastName', {
-//                 required: 'Last name is required.',
-//               })}
-//               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
-//               placeholder="Enter your last name"
-//             />
-//             {errors.lastName && (
-//               <span style={{ color: 'red' }} className="text-sm">
-//                 {getErrorMessage(errors.lastName as FieldError)}
-//               </span>
-//             )}
-//           </div>
-//         </div>
-//       )}
+      {/* Note */}
+      <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-4">
+        Please ensure your information is accurate before submitting.
+      </p>
+    </div>
+  )
+}
 
-//       {selectedOption === 'Company' && (
-//         <div className="flex flex-col sm:flex-row gap-4 mt-4">
-//           <div className="mb-4 w-full sm:w-1/2">
-//             <label className="block text-sm font-medium text-gray-700">
-//               Company Name
-//             </label>
-//             <input
-//               type="text"
-//               {...register('companyName', {
-//                 required: 'Company name is required.',
-//               })}
-//               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
-//               placeholder="Enter your company name"
-//             />
-//             {errors.companyName && (
-//               <span style={{ color: 'red' }} className="text-sm">
-//                 {getErrorMessage(errors.companyName as FieldError)}
-//               </span>
-//             )}
-//           </div>
-//           <div className="mb-4 w-full sm:w-1/2">
-//             <label className="block text-sm font-medium text-gray-700">
-//               Retailer Name
-//             </label>
-//             <input
-//               type="text"
-//               {...register('retailerName', {
-//                 required: 'Retailer name is required.',
-//               })}
-//               className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
-//               placeholder="Enter the retailer name"
-//             />
-//             {errors.retailerName && (
-//               <span style={{ color: 'red' }} className="text-sm">
-//                 {getErrorMessage(errors.retailerName as FieldError)}
-//               </span>
-//             )}
-//           </div>
-//         </div>
-//       )}
-
-//       {/* Hidden input field for validation */}
-//       <input
-//         type="hidden"
-//         {...register('clientType', {
-//           required: 'Please select an option.',
-//         })}
-//       />
-
-//       {/* Display validation error if exists */}
-//       {errors.clientType && (
-//         <span
-//           style={{ color: 'red' }}
-//           className="text-xs sm:text-sm md:text-base"
-//         >
-//           {getErrorMessage(errors.clientType as FieldError)}
-//         </span>
-//       )}
-
-//       {/* Note */}
-//       <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-4">
-//         Choose the option that best suits your needs.
-//       </p>
-//     </div>
-//   )
-// }
-
-// export default Step12
+export default Step13
