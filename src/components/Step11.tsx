@@ -1,7 +1,7 @@
 'use client'
 import { Image11a, Image11b, Image11c } from '@/Images/images'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useFormContext, FieldError } from 'react-hook-form'
 
 const options = [
   { name: 'Less than a Month', src: Image11a },
@@ -10,10 +10,25 @@ const options = [
 ]
 
 const Step11 = () => {
-  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+
+  const selectedOption = watch('deliveryDate') // Watch the selected delivery date option
 
   const handleSelect = (index: number) => {
-    setSelectedOption(index)
+    setValue('deliveryDate', options[index].name, { shouldValidate: true }) // Set the selected delivery date option
+  }
+
+  // Function to extract error message safely
+  const getErrorMessage = (error: FieldError | undefined): string | null => {
+    if (error && typeof error === 'object' && 'message' in error) {
+      return error.message || null
+    }
+    return null
   }
 
   return (
@@ -30,7 +45,7 @@ const Step11 = () => {
 
       {/* Paragraph Description */}
       <p className="text-sm text-gray-500 mb-4">
-        When you want your Garage Door to be Delivered?
+        When do you want your Garage Door to be delivered?
       </p>
 
       {/* Image Cards */}
@@ -40,8 +55,8 @@ const Step11 = () => {
             key={index}
             onClick={() => handleSelect(index)}
             className={`cursor-pointer rounded-md overflow-hidden my-2 p-2 transition-transform duration-300 ease-in-out ${
-              selectedOption === index
-                ? 'shadow-[0_6px_12px_4px_rgba(120,120,120,0.5)]  transform scale-105 border-b-4 border-color1'
+              selectedOption === option.name
+                ? 'shadow-[0_6px_12px_4px_rgba(120,120,120,0.5)] transform scale-105 border-b-4 border-color1'
                 : 'shadow-lg'
             }`}
             style={{ width: 'calc(100% - 1rem)', maxWidth: '20rem' }} // Responsive width
@@ -61,6 +76,21 @@ const Step11 = () => {
           </div>
         ))}
       </div>
+
+      {/* Hidden input field for deliveryDate validation */}
+      <input
+        type="hidden"
+        {...register('deliveryDate', {
+          required: 'Please select a delivery date option.',
+        })}
+      />
+
+      {/* Display validation error for deliveryDate */}
+      {errors.deliveryDate && (
+        <span style={{ color: 'red' }} className="text-sm">
+          {getErrorMessage(errors.deliveryDate as FieldError)}
+        </span>
+      )}
 
       {/* Note */}
       <p className="text-sm text-gray-500 mt-4">

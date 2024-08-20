@@ -12,6 +12,8 @@ import Step8 from './Step8'
 import Step9 from './Step9'
 import Step10 from './Step10'
 import Step11 from './Step11'
+import Step12 from './Step12'
+// import Step13 from './Step13'
 
 const steps = [
   'Bay Width',
@@ -25,6 +27,8 @@ const steps = [
   'Pedestrian Door',
   'Window',
   'Delivery Time',
+  'Customer Type',
+  // 'Personal Information',
 ]
 
 const MultiStepForm = () => {
@@ -71,6 +75,11 @@ const MultiStepForm = () => {
         return <Step10 />
       case 10:
         return <Step11 />
+      case 11:
+        return <Step12 />
+
+      // case 12:
+      //   return <Step13 />
       default:
         return <Step1 />
     }
@@ -123,15 +132,7 @@ const MultiStepForm = () => {
 
       {/* Step Content - Visible on All Screens */}
       <div className="w-full md:w-3/4 flex flex-col">
-        {/* Step Text Only - Visible on Small Screens */}
-        <div className="flex flex-col justify-center items-center md:hidden mb-4">
-          {currentStep > 0 && ( // Conditionally render based on currentStep
-            <div className="mt-2 text-md font-semibold text-gray-800 text-center">
-              {steps[currentStep]}
-            </div>
-          )}
-        </div>
-
+        {/* Removed Step Text Only for Small Screens */}
         {/* Step Component */}
         <div>{renderStepComponent()}</div>
 

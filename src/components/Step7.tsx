@@ -47,9 +47,10 @@ const Step7 = () => {
     const color = colors[index]
     setValue('colorName', color.name, { shouldValidate: true })
     setValue('color', index)
-    if (color.name === 'Other RAL') {
-      // Show the custom color input field when "Other RAL" is selected
+    if (color.name !== 'Other RAL') {
+      // Clear custom color if "Other RAL" is not selected
       setCustomColor('')
+      setValue('customColor', '')
     }
   }
 
@@ -136,6 +137,12 @@ const Step7 = () => {
             onChange={handleCustomColorChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
           />
+          {/* Display validation error for customColor if exists */}
+          {errors.customColor && (
+            <span style={{ color: 'red' }} className="text-xs sm:text-sm">
+              {getErrorMessage(errors.customColor as FieldError)}
+            </span>
+          )}
         </div>
       )}
 
@@ -146,7 +153,15 @@ const Step7 = () => {
           required: 'Please select a color.',
         })}
       />
-      <input type="hidden" {...register('customColor')} />
+      <input
+        type="hidden"
+        {...register('customColor', {
+          validate: (value) =>
+            selectedColor === 'Other RAL' && !value
+              ? 'Please enter a custom color.'
+              : true,
+        })}
+      />
 
       {/* Display validation error if exists */}
       {errors.colorName && (

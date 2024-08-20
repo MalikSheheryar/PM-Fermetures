@@ -55,7 +55,7 @@ const Step9 = () => {
             onClick={() => handleSelect(index)}
             className={`cursor-pointer rounded-lg overflow-hidden mb-4 transition-transform duration-200 ease-in-out ${
               selectedOption === option.name
-                ? 'shadow-[0_6px_12px_4px_rgba(100,149,237,0.5)] scale-105 border-b-4 border-color1'
+                ? 'shadow-[0_6px_12px_4px_rgba(120,120,120,0.5)] scale-105 border-b-4 border-color1'
                 : 'shadow-lg'
             } w-full sm:w-3/4 lg:w-1/2 xl:w-1/3`}
           >
