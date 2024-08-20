@@ -47,7 +47,7 @@ const Step12 = () => {
       </p>
 
       {/* Image Cards */}
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-16 lg:gap-20">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 lg:gap-10">
         {options.map((option, index) => (
           <div
             key={index}
@@ -56,9 +56,9 @@ const Step12 = () => {
               selectedOption === option.name
                 ? 'shadow-[0_6px_12px_4px_rgba(120,120,120,0.5)] scale-105 border-b-4 border-color1'
                 : 'shadow-lg'
-            } w-full sm:w-3/4 lg:w-1/2 xl:w-1/3`}
+            } w-full sm:w-1/2 md:w-1/3`}
           >
-            <div className="w-full h-auto max-w-[320px] max-h-[320px] mx-auto">
+            <div className="w-full h-auto max-w-[120px] max-h-[120px] sm:max-w-[180px] sm:max-h-[180px] md:max-w-[240px] md:max-h-[240px] lg:max-w-[320px] lg:max-h-[320px] mx-auto py-2">
               <Image
                 src={option.src}
                 alt={option.name}
