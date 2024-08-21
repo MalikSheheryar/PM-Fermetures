@@ -56,9 +56,10 @@ const Step2 = () => {
         </label>
         <input
           placeholder="In millimeters"
-          className={`mt-1 block w-full p-2 md:p-3 border ${
+          className={`mt-1 block w-full p-2 md:p-2 border ${
             errors.bayHeight ? 'border-red-500' : 'border-gray-300'
-          } rounded-md shadow-sm focus:border-2 focus:border-gray-700 focus:outline-none text-xs md:text-sm`}
+          } rounded-md shadow-sm focus:border-2 focus:border-gray-700 focus:outline-none text-sm md:text-base`}
+          style={{ fontSize: '16px' }}
           {...register('bayHeight', {
             required: 'Bay Height is required',
             pattern: {

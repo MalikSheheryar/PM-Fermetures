@@ -42,6 +42,7 @@ const Step13 = () => {
             },
           })}
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm focus:border-2"
+          style={{ fontSize: '16px' }}
           placeholder="Enter your email address"
         />
         {errors.email && (
@@ -67,6 +68,7 @@ const Step13 = () => {
               },
             })}
             className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            style={{ fontSize: '16px' }}
             placeholder="Enter your phone number"
           />
           {errors.phone && (
@@ -85,6 +87,7 @@ const Step13 = () => {
               required: 'Address is required.',
             })}
             className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            style={{ fontSize: '16px' }}
             placeholder="Enter your address"
           />
           {errors.address && (
@@ -107,6 +110,7 @@ const Step13 = () => {
               required: 'City is required.',
             })}
             className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            style={{ fontSize: '16px' }}
             placeholder="Enter your city"
           />
           {errors.city && (
@@ -129,6 +133,7 @@ const Step13 = () => {
               },
             })}
             className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            style={{ fontSize: '16px' }}
             placeholder="Enter your postal code"
           />
           {errors.postalCode && (
@@ -147,6 +152,7 @@ const Step13 = () => {
         <textarea
           {...register('additionalInfo')}
           className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+          style={{ fontSize: '16px' }}
           placeholder="(Optional)"
         />
       </div>

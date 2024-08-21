@@ -87,7 +87,8 @@ const Step12 = () => {
               {...register('firstName', {
                 required: 'First name is required.',
               })}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-2 focus:border-gray-700 focus:outline-none sm:text-sm"
+              style={{ fontSize: '16px' }} // Add this line to prevent zooming
               placeholder="Enter your first name"
             />
             {errors.firstName && (
@@ -105,7 +106,8 @@ const Step12 = () => {
               {...register('lastName', {
                 required: 'Last name is required.',
               })}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+              className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+              style={{ fontSize: '16px' }} // Add this line to prevent zooming
               placeholder="Enter your last name"
             />
             {errors.lastName && (
@@ -128,7 +130,8 @@ const Step12 = () => {
               {...register('companyName', {
                 required: 'Company name is required.',
               })}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+              className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+              style={{ fontSize: '16px' }} // Add this line to prevent zooming
               placeholder="Enter your company name"
             />
             {errors.companyName && (
@@ -146,7 +149,8 @@ const Step12 = () => {
               {...register('retailerName', {
                 required: 'Retailer name is required.',
               })}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+              className="mt-1 block w-full p-2 border focus:border-2 border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+              style={{ fontSize: '16px' }} // Add this line to prevent zooming
               placeholder="Enter the retailer name"
             />
             {errors.retailerName && (

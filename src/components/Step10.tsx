@@ -107,7 +107,8 @@ const Step10 = () => {
               },
             })}
             onChange={handleInputChange}
-            className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:border-gray-700 focus:outline-none sm:text-sm"
+            style={{ fontSize: '16px' }} // Add this line to prevent zooming
             placeholder="In millimeters"
           />
           {/* Display validation error if exists */}

@@ -135,7 +135,8 @@ const Step7 = () => {
             id="customColor"
             value={customColor}
             onChange={handleCustomColorChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-2 focus:border-gray-700 focus:outline-none sm:text-sm p-2"
+            style={{ fontSize: '16px' }} // Add this line to prevent zooming
           />
           {/* Display validation error for customColor if exists */}
           {errors.customColor && (

@@ -59,7 +59,8 @@ const Step5 = () => {
           placeholder="In millimeters"
           className={`mt-1 block w-full p-2 md:p-3 border ${
             errors.rightSpandrel ? 'border-red-500' : 'border-gray-300'
-          } rounded-md shadow-sm focus:border-2 focus:border-gray-700 focus:outline-none text-xs md:text-sm`}
+          } rounded-md shadow-sm focus:border-2 focus:border-gray-700 focus:outline-none text-sm md:text-md`}
+          style={{ fontSize: '16px' }}
           {...register('rightSpandrel', {
             required: 'Right Spandrel dimensions are required',
             pattern: {
