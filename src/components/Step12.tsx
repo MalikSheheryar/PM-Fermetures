@@ -58,13 +58,13 @@ const Step12 = () => {
                 : 'shadow-lg'
             } w-full sm:w-1/2 md:w-1/3`}
           >
-            <div className="w-full h-auto max-w-[120px] max-h-[120px] sm:max-w-[180px] sm:max-h-[180px] md:max-w-[240px] md:max-h-[240px] lg:max-w-[320px] lg:max-h-[320px] mx-auto py-2">
+            <div className="w-full h-auto max-w-[120px] sm:max-w-[150px] md:max-w-[180px] lg:max-w-[200px] xl:max-w-[250px] mx-auto py-2">
               <Image
                 src={option.src}
                 alt={option.name}
                 layout="responsive"
-                width={320}
-                height={320}
+                width={250}
+                height={250}
                 className="object-cover"
               />
             </div>
