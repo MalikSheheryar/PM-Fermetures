@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { Image4 } from '../Images/images' // Assume Image5 is the correct image for Right Spandrel
+import { Image4a } from '../Images/images' // Assume Image5 is the correct image for Right Spandrel
 import { useFormContext, FieldError } from 'react-hook-form'
 
 const Step5 = () => {
@@ -38,7 +38,7 @@ const Step5 = () => {
       <div className="flex justify-center mb-6">
         <div className="relative w-full max-w-[75%] h-48 sm:max-w-xs sm:h-32 md:max-w-lg md:h-40 lg:h-48 xl:h-64 2xl:h-80 shadow-lg">
           <Image
-            src={Image4}
+            src={Image4a}
             alt="Right spandrel example"
             objectFit="fill"
             fill

@@ -66,6 +66,16 @@ const Step1 = () => {
               value: /^[0-9]*\.?[0-9]+$/,
               message: 'Please enter a valid number',
             },
+            min: {
+              value: 1000,
+              message:
+                'Bay width must be a valid number between 1000mm and 13500mm',
+            },
+            max: {
+              value: 13500,
+              message:
+                'Bay width must be a valid number between 1000mm and 13500mm',
+            },
           })}
         />
         {errors.bayWidth && (

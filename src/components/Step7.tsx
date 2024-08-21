@@ -37,6 +37,7 @@ const Step7 = () => {
     register,
     setValue,
     watch,
+    unregister,
     formState: { errors },
   } = useFormContext()
 
@@ -45,20 +46,29 @@ const Step7 = () => {
 
   const handleSelect = (index: number) => {
     const color = colors[index]
+
+    // Set the selected color name
     setValue('colorName', color.name, { shouldValidate: true })
-    setValue('color', index)
-    if (color.name !== 'Other RAL') {
-      // Clear custom color if "Other RAL" is not selected
+
+    // Unregister the color index if it's being set anywhere
+    unregister('color')
+
+    // If "Other RAL" is selected, allow custom color input
+    if (color.name === 'Other RAL') {
+      setValue('customColor', customColor, { shouldValidate: true })
+    } else {
+      // Clear custom color if not "Other RAL"
       setCustomColor('')
-      setValue('customColor', '')
+      unregister('customColor')
     }
   }
 
   const handleCustomColorChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setCustomColor(event.target.value)
-    setValue('customColor', event.target.value)
+    const value = event.target.value
+    setCustomColor(value)
+    setValue('customColor', value, { shouldValidate: true })
   }
 
   const getErrorMessage = (error: FieldError | undefined): string | null => {
@@ -136,7 +146,7 @@ const Step7 = () => {
             value={customColor}
             onChange={handleCustomColorChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-2 focus:border-gray-700 focus:outline-none sm:text-sm p-2"
-            style={{ fontSize: '16px' }} // Add this line to prevent zooming
+            style={{ fontSize: '16px' }} // Prevent zooming on input
           />
           {/* Display validation error for customColor if exists */}
           {errors.customColor && (
@@ -147,24 +157,15 @@ const Step7 = () => {
         </div>
       )}
 
-      {/* Hidden input field for validation */}
+      {/* Hidden Input Field for colorName */}
       <input
         type="hidden"
         {...register('colorName', {
           required: 'Please select a color.',
         })}
       />
-      <input
-        type="hidden"
-        {...register('customColor', {
-          validate: (value) =>
-            selectedColor === 'Other RAL' && !value
-              ? 'Please enter a custom color.'
-              : true,
-        })}
-      />
 
-      {/* Display validation error if exists */}
+      {/* Display validation error for colorName if exists */}
       {errors.colorName && (
         <span style={{ color: 'red' }} className="text-xs sm:text-sm">
           {getErrorMessage(errors.colorName as FieldError)}

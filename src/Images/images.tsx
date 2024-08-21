@@ -2,6 +2,7 @@ import Image1 from '../../public/assets/image-1.webp'
 import Image2 from '../../public/assets/image-2.webp'
 import Image3 from '../../public/assets/image-3.webp'
 import Image4 from '../../public/assets/image-4.webp'
+import Image4a from '../../public/assets/Image4-a.png'
 import Image5a from '../../public/assets/image5-a.jpg'
 import Image5b from '../../public/assets/image5-b.jpg'
 import Image5c from '../../public/assets/image5-c.jpg'
@@ -42,6 +43,7 @@ export {
   Image3,
   Logo,
   Image4,
+  Image4a,
   Image5a,
   Image5b,
   Image5c,
